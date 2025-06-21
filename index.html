@@ -3,26 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Parcel Vanilla JS App</title>
+    <title>Alloyz</title>
     <link rel="manifest" href="/manifest.json" />
   </head>
-  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-2">
-    <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-4 mx-auto">
-      <h1 class="text-2xl font-bold text-blue-700 mb-2 text-center">Alloy Ally</h1>
-      <p class="text-sm text-gray-500 mb-4 text-center">Jewellery Alloy Calculator for Sandcasting</p>
-      <form id="alloy-form" class="space-y-4">
+  <body class="bg-vaporwave min-h-screen flex items-center justify-center p-2 leading-[1.2]">
+    <div class="w-full max-w-md bg-black bg-opacity-80 rounded-2xl shadow-2xl p-16 mx-auto border-4 border-pink-400 calculator-container">
+      <h1 class="text-3xl font-extrabold mb-4 tracking-widest drop-shadow-vapor font-vapor text-[#f5e9da] leading-relaxed">Alloy Ally</h1>
+      <p class="text-xs font-sans-vapor text-pink-200 mb-8 tracking-widest uppercase font-vapor leading-relaxed">Jewellery Alloy Calculator</p>
+      <form id="alloy-form" class="space-y-10">
         <div>
-          <label class="block text-gray-700 font-medium mb-1">Wax Weight (g)</label>
-          <input type="number" step="0.01" min="0" id="wax-weight" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="e.g. 2.5">
+          <label class="block text-pink-200 font-bold mb-2 font-mono-vapor tracking-wide text-left leading-relaxed">Wax Weight (g)</label>
+          <input type="number" step="0.01" min="0" id="wax-weight" class="w-full border-2 border-blue-300 rounded-lg px-4 py-3 bg-black bg-opacity-60 text-pink-100 font-mono-vapor text-lg focus:outline-none focus:ring-2 focus:ring-pink-400 leading-relaxed" placeholder="e.g. 2.5">
         </div>
-        <div class="text-center text-gray-400">or</div>
+        <div class="text-purple-300 font-mono-vapor text-lg my-2 text-left leading-relaxed">or</div>
         <div>
-          <label class="block text-gray-700 font-medium mb-1">Metal Weight (g)</label>
-          <input type="number" step="0.01" min="0" id="metal-weight" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="e.g. 25">
+          <label class="block text-pink-200 font-bold mb-2 font-mono-vapor tracking-wide text-left leading-relaxed">Metal Weight (g)</label>
+          <input type="number" step="0.01" min="0" id="metal-weight" class="w-full border-2 border-blue-300 rounded-lg px-4 py-3 bg-black bg-opacity-60 text-pink-100 font-mono-vapor text-lg focus:outline-none focus:ring-2 focus:ring-pink-400 leading-relaxed" placeholder="e.g. 25">
         </div>
         <div>
-          <label class="block text-gray-700 font-medium mb-1">Alloy Type</label>
-          <select id="alloy-type" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <label class="block text-pink-200 font-bold mb-2 font-mono-vapor tracking-wide text-left leading-relaxed">Alloy Type</label>
+          <select id="alloy-type" class="w-full border-2 border-blue-300 rounded-lg px-4 py-3 bg-black bg-opacity-60 text-pink-100 font-mono-vapor text-lg focus:outline-none focus:ring-2 focus:ring-pink-400 leading-relaxed">
             <option value="sterling">Sterling Silver (92.5% Ag, 7.5% Cu)</option>
             <option value="9k">9k Gold (37.5% Au, 31.25% Ag, 31.25% Cu)</option>
             <option value="12k">12k Gold (50% Au, 25% Ag, 25% Cu)</option>
@@ -31,7 +31,7 @@
           </select>
         </div>
       </form>
-      <div id="results" class="mt-6 bg-gray-50 rounded p-4 text-center text-gray-800"></div>
+      <div id="results" class="mt-12 bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900 bg-opacity-80 rounded-lg p-8 text-pink-100 font-mono-vapor shadow-vapor border-2 border-pink-400 text-left leading-relaxed"></div>
     </div>
     <script type="module" src="./index.js"></script>
   </body>

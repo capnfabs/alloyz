@@ -31,3 +31,7 @@ npm run build
 ---
 
 Feel free to start building your app in `index.js` and style it in `style.css`!
+
+
+## Next steps:
+
