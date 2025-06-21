@@ -7,13 +7,14 @@
     <link rel="manifest" href="/manifest.json" />
   </head>
   <body class="bg-vaporwave min-h-screen flex items-center justify-center p-2 leading-[1.2]">
-    <div class="w-full max-w-md bg-black bg-opacity-80 rounded-2xl shadow-2xl p-16 mx-auto border-4 border-pink-400 calculator-container">
+    <div class="w-full max-w-lg bg-black bg-opacity-80 rounded-2xl shadow-2xl p-8 mx-auto border-4 border-pink-400 calculator-container">
       <h1 class="text-3xl font-extrabold mb-4 tracking-widest drop-shadow-vapor font-vapor text-[#f5e9da] leading-relaxed">Alloy Ally</h1>
       <p class="text-xs font-sans-vapor text-pink-200 mb-8 tracking-widest uppercase font-vapor leading-relaxed">Jewellery Alloy Calculator</p>
       <form id="alloy-form" class="space-y-10">
         <div>
           <label class="block text-pink-200 font-bold mb-2 font-mono-vapor tracking-wide text-left leading-relaxed">Wax Weight (g)</label>
           <input type="number" step="0.01" min="0" id="wax-weight" class="w-full border-2 border-blue-300 rounded-lg px-4 py-3 bg-black bg-opacity-60 text-pink-100 font-mono-vapor text-lg focus:outline-none focus:ring-2 focus:ring-pink-400 leading-relaxed" placeholder="e.g. 2.5">
+          <div id="wax-warning"></div>
         </div>
         <div class="text-purple-300 font-mono-vapor text-lg my-2 text-left leading-relaxed">or</div>
         <div>

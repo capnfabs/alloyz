@@ -54,6 +54,7 @@ const waxInput = document.getElementById('wax-weight');
 const metalInput = document.getElementById('metal-weight');
 const alloySelect = document.getElementById('alloy-type');
 const resultsDiv = document.getElementById('results');
+const waxWarningDiv = document.getElementById('wax-warning');
 
 let updating = false;
 
@@ -75,6 +76,12 @@ function calculate() {
   let metal = parseFloat(metalInput.value);
   let baseMetal = 0;
   let usedWax = false;
+  let warning = '';
+
+  if (!isNaN(wax) && wax > 10) {
+    warning = '<div class="mt-2 p-2 rounded bg-yellow-200 text-yellow-900 font-bold font-sans-vapor text-sm">This seems like a lot! Did you accidentally enter the metal weight?</div>';
+  }
+  waxWarningDiv.innerHTML = warning;
 
   if (!isNaN(wax) && wax > 0) {
     baseMetal = wax * 10;
@@ -92,13 +99,15 @@ function calculate() {
   let breakdownHtml = `<div class="mb-2 font-semibold">${alloy.name}</div>`;
   breakdownHtml += `<div class="mb-2">Total metal needed: <span class="font-mono">${totalMetal.toFixed(2)}g</span> <span class="text-xs text-gray-400">(includes 5g extra)</span></div>`;
   breakdownHtml += '<div class="mb-2">Breakdown:</div>';
+  breakdownHtml += '<hr class="my-2 border-pink-400 border-t-2">';
   breakdownHtml += '<div class="space-y-1">';
   alloy.breakdown.forEach(part => {
     const amt = totalMetal * part.percent;
     breakdownHtml += `<div class="flex justify-between"><span>${part.label} (${(part.percent*100).toFixed(1)}%)</span><span class="font-mono">${amt.toFixed(2)}g</span></div>`;
   });
   breakdownHtml += '</div>';
-  breakdownHtml += `<div class="mt-4 text-xs text-gray-500">${usedWax ? `Wax weight × 10 = <span class='font-mono'>${baseMetal.toFixed(2)}g</span> metal` : ''}</div>`;
+  breakdownHtml += '<hr class="my-2 border-pink-400 border-t-2">';
+  breakdownHtml += `<div class="mt-4 text-xs text-gray-400">${usedWax ? `Wax weight × 10 = <span class='font-mono'>${baseMetal.toFixed(2)}g</span> metal` : ''}</div>`;
 
   resultsDiv.innerHTML = breakdownHtml;
 }
