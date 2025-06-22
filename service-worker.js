@@ -1,5 +1,12 @@
-// The __PRECACHE_ASSETS__ placeholder will be replaced at build time with the actual hashed filenames.
-const PRECACHE_ASSETS = __PRECACHE_ASSETS__;
+// The placeholder will be replaced at build time with the actual hashed filenames.
+
+const PRECACHE_ASSETS = (() => {
+  try {
+    return __PRECACHE_ASSETS__;
+  } catch {
+    return [];
+  }
+})();
 
 self.addEventListener('install', event => {
   event.waitUntil(
@@ -14,17 +21,19 @@ self.addEventListener('activate', event => {
   event.waitUntil(self.clients.claim());
 });
 
+const cacheFirst = async (request) => {
+  const responseFromCache = await caches.match(request);
+  if (responseFromCache) {
+    return responseFromCache;
+  }
+  return fetch(request);
+};
+
+
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // update the cache before serving
-        const responseClone = response.clone();
-        caches.open('v1').then(cache => {
-          cache.put(event.request, responseClone);
-        });
-        return response;
-      })
-      .catch(() => caches.match(event.request))
-  );
+  // if dev, skip cache
+  if (process.env.NODE_ENV === 'development') {
+    return event.respondWith(fetch(event.request));
+  }
+  event.respondWith(cacheFirst(event.request));
 });
