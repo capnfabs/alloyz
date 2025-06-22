@@ -63,9 +63,17 @@ function syncInputs(source) {
   let wax = parseFloat(waxInput.value);
   let metal = parseFloat(metalInput.value);
   if (source === 'wax' && (!isNaN(wax) || waxInput.value === '')) {
-    metalInput.value = (wax * 10).toFixed(2);
+    if (waxInput.value === '') {
+      metalInput.value = '';
+    } else {
+      metalInput.value = (wax * 10).toFixed(2);
+    }
   } else if (source === 'metal' && (!isNaN(metal) || metalInput.value === '')) {
-    waxInput.value = (metal / 10).toFixed(2);
+    if (metalInput.value === '') {
+      waxInput.value = '';
+    } else {
+      waxInput.value = (metal / 10).toFixed(2);
+    }
   }
   lastUsedInput = source;
   updating = false;
@@ -105,7 +113,7 @@ function calculate() {
       </span>
     </div>
     <div class="flex justify-between tabular-nums">
-      <span>Sprues:</span>
+      <span>Extra for sprues etc:</span>
       <span class="inline-flex items-baseline">
         <span class="font-mono min-w-[4.5em] text-right tabular-nums">5.00</span>
         <span class="ml-1 font-mono">g</span>

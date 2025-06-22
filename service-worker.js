@@ -31,9 +31,5 @@ const cacheFirst = async (request) => {
 
 
 self.addEventListener('fetch', event => {
-  // if dev, skip cache
-  if (process.env.NODE_ENV === 'development') {
-    return event.respondWith(fetch(event.request));
-  }
   event.respondWith(cacheFirst(event.request));
 });
