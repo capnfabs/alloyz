@@ -97,17 +97,45 @@ function calculate() {
   const alloy = alloyData[alloySelect.value];
 
   let breakdownHtml = `<div class="mb-2 font-semibold">${alloy.name}</div>`;
-  breakdownHtml += `<div class="mb-2">Total metal needed: <span class="font-mono">${totalMetal.toFixed(2)}g</span> <span class="text-xs text-gray-400">(includes 5g extra)</span></div>`;
-  breakdownHtml += '<div class="mb-2">Breakdown:</div>';
+  breakdownHtml += `<div class="font-semibold mt-4 text-xs text-gray-400">Metal requirements:</div>`;
+  breakdownHtml += `<div class="mt-2 text-xs text-gray-400">
+    <div class="flex justify-between tabular-nums">
+      <span>Wax weight × 10:</span>
+      <span class="inline-flex items-baseline">
+        <span class="font-mono min-w-[4.5em] text-right tabular-nums">${baseMetal.toFixed(2)}</span>
+        <span class="ml-1 font-mono">g</span>
+      </span>
+    </div>
+    <div class="flex justify-between tabular-nums">
+      <span>Sprues:</span>
+      <span class="inline-flex items-baseline">
+        <span class="font-mono min-w-[4.5em] text-right tabular-nums">5.00</span>
+        <span class="ml-1 font-mono">g</span>
+      </span>
+    </div>
+  </div>`;
+  breakdownHtml += `<div class="mt-2 flex justify-between items-baseline">
+    <span>Total metal needed:</span>
+    <span class="inline-flex items-baseline">
+      <span class="font-mono min-w-[4.5em] text-right tabular-nums">${totalMetal.toFixed(2)}</span>
+      <span class="ml-1 font-mono">g</span>
+    </span>
+  </div>`;
+  breakdownHtml += '<div class="mt-4 mb-2">Breakdown:</div>';
   breakdownHtml += '<hr class="my-2 border-pink-400 border-t-2">';
   breakdownHtml += '<div class="space-y-1">';
   alloy.breakdown.forEach(part => {
     const amt = totalMetal * part.percent;
-    breakdownHtml += `<div class="flex justify-between"><span>${part.label} (${(part.percent*100).toFixed(1)}%)</span><span class="font-mono">${amt.toFixed(2)}g</span></div>`;
+    breakdownHtml += `<div class="flex justify-between items-baseline">
+      <span>${part.label} (${(part.percent*100).toFixed(1)}%)</span>
+      <span class="inline-flex items-baseline">
+        <span class="font-mono min-w-[4.5em] text-right tabular-nums">${amt.toFixed(2)}</span>
+        <span class="ml-1 font-mono">g</span>
+      </span>
+    </div>`;
   });
   breakdownHtml += '</div>';
   breakdownHtml += '<hr class="my-2 border-pink-400 border-t-2">';
-  breakdownHtml += `<div class="mt-4 text-xs text-gray-400">${usedWax ? `Wax weight × 10 = <span class='font-mono'>${baseMetal.toFixed(2)}g</span> metal` : ''}</div>`;
 
   resultsDiv.innerHTML = breakdownHtml;
 }
