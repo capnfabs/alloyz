@@ -1,37 +1,23 @@
-# Parcel Vanilla JS App with Tailwind & Offline Support
+# Alloyzzz
 
-This is a starter template for a vanilla JS app using Parcel as the bundler, Tailwind CSS for styling, and a service worker for offline support.
+It's a web-app for calculating the percentage of pure metals to use for sandcasting based on what I learned at
+[sz.jewelrystudio](https://www.instagram.com/sz.jewelrystudio/) sandcasting workshop.
 
-## Getting Started
+It:
+- Is vibe-coded using Copilot chat (I think maybeee 3 lines are written by hand)
+- Doesn't have tests
+- Uses Tailwind for styling, Parcel for bundling
+- Works offline thanks to service workers.
+
+## Build / Run:
 
 ### Install dependencies
 
-```
+```sh
+# Install deps
 npm install
-```
-
-### Start development server
-
-```
+# dev server
 npm run dev
-```
-
-### Build for production
-
-```
+# build for prod
 npm run build
 ```
-
-## Features
-- ⚡️ Fast bundling with Parcel
-- 🎨 Utility-first styling with Tailwind CSS
-- 📴 Full offline support via service worker
-- 🧩 No backend, pure frontend
-
----
-
-Feel free to start building your app in `index.js` and style it in `style.css`!
-
-
-## Next steps:
-

@@ -1,9 +1,9 @@
 {
-  "name": "Parcel Vanilla JS App",
-  "short_name": "ParcelApp",
+  "name": "Alloyz",
+  "short_name": "Alloyz",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#f3f4f6",
-  "description": "A vanilla JS app with Parcel, Tailwind, and offline support.",
+  "background_color": "#6a4cff",
+  "description": "An alloy calculator app for sandcasting",
   "icons": []
 }

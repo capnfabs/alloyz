@@ -6,8 +6,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-console.log('App loaded!');
-
 const alloyData = {
   sterling: {
     name: 'Sterling Silver',
@@ -57,17 +55,19 @@ const resultsDiv = document.getElementById('results');
 const waxWarningDiv = document.getElementById('wax-warning');
 
 let updating = false;
+let lastUsedInput = null;
 
 function syncInputs(source) {
   if (updating) return;
   updating = true;
   let wax = parseFloat(waxInput.value);
   let metal = parseFloat(metalInput.value);
-  if (source === 'wax' && !isNaN(wax) && wax > 0) {
+  if (source === 'wax' && (!isNaN(wax) || waxInput.value === '')) {
     metalInput.value = (wax * 10).toFixed(2);
-  } else if (source === 'metal' && !isNaN(metal) && metal > 0) {
+  } else if (source === 'metal' && (!isNaN(metal) || metalInput.value === '')) {
     waxInput.value = (metal / 10).toFixed(2);
   }
+  lastUsedInput = source;
   updating = false;
 }
 
@@ -75,17 +75,15 @@ function calculate() {
   let wax = parseFloat(waxInput.value);
   let metal = parseFloat(metalInput.value);
   let baseMetal = 0;
-  let usedWax = false;
   let warning = '';
 
-  if (!isNaN(wax) && wax > 10) {
+  if (!isNaN(wax) && wax > 10 && lastUsedInput === 'wax') {
     warning = '<div class="mt-2 p-2 rounded bg-yellow-200 text-yellow-900 font-bold font-sans-vapor text-sm">This seems like a lot! Did you accidentally enter the metal weight?</div>';
   }
   waxWarningDiv.innerHTML = warning;
 
   if (!isNaN(wax) && wax > 0) {
     baseMetal = wax * 10;
-    usedWax = true;
   } else if (!isNaN(metal) && metal > 0) {
     baseMetal = metal;
   } else {
