@@ -1,25 +1,18 @@
-// The placeholder will be replaced at build time with the actual hashed filenames.
+import {manifest, version} from '@parcel/service-worker';
 
-const PRECACHE_ASSETS = (() => {
-  try {
-    return __PRECACHE_ASSETS__;
-  } catch {
-    return [];
-  }
-})();
+async function install() {
+  const cache = await caches.open(version);
+  await cache.addAll(manifest);
+}
+addEventListener('install', e => e.waitUntil(install()));
 
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open('v1').then(cache => {
-      return cache.addAll(PRECACHE_ASSETS);
-    })
+async function activate() {
+  const keys = await caches.keys();
+  await Promise.all(
+    keys.map(key => key !== version && caches.delete(key))
   );
-  self.skipWaiting();
-});
-
-self.addEventListener('activate', event => {
-  event.waitUntil(self.clients.claim());
-});
+}
+addEventListener('activate', e => e.waitUntil(activate()));
 
 const cacheFirst = async (request) => {
   const responseFromCache = await caches.match(request);

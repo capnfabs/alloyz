@@ -2,7 +2,10 @@ import './style.css';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register(new URL('./service-worker.js', import.meta.url));
+    navigator.serviceWorker.register(
+      new URL('./service-worker.js', import.meta.url),
+      { type: 'module' }
+    );
   });
 }
 
@@ -133,7 +136,7 @@ function calculate() {
   alloy.breakdown.forEach(part => {
     const amt = totalMetal * part.percent;
     breakdownHtml += `<div class="flex justify-between items-baseline">
-      <span>${part.label} (${(part.percent*100).toFixed(1)}%)</span>
+      <span>${part.label} (${(part.percent * 100).toFixed(1)}%)</span>
       <span class="inline-flex items-baseline">
         <span class="font-mono min-w-[4.5em] text-right tabular-nums">${amt.toFixed(2)}</span>
         <span class="ml-1 font-mono">g</span>
